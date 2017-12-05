@@ -1,17 +1,12 @@
 var express = require("express");
 var app = express();
-var os = require('os');
-
 
 app.get("/whoami", function(req, res){
-  // console.log(os.networkInterfaces().eth0[0].address);
-    //console.log(req.socket.localAddress);
-
-
+var osInfo = req.headers['user-agent'].match(/\((.*?)\)/);
    res.json({
        "IP Address": req.headers['x-forwarded-for'],
        "Language": req.get('Accept-Language').slice(0,5),
-       "Software": os.type()+" "+os.release()
+        "Software": osInfo[1]
    });
    
 });
