@@ -9,7 +9,7 @@ app.get("/whoami", function(req, res){
 
 
    res.json({
-       "IP Address": req.socket.localAddress,
+       "IP Address": req.headers['x-forwarded-for'],
        "Language": req.get('Accept-Language').slice(0,5),
        "Software": os.type()+" "+os.release()
    });
